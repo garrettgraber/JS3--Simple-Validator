@@ -16,12 +16,13 @@ window.number_check = number_check;
 var input_info = window.prompt("Ten digit phone number (with dashes): ", "");
 
 input_info_length = input_info.length;
+bad_dash_input = "------------";
 
 input_status = number_check(input_info);
 
 if (input_status === true) {
 
-	if ( (input_info_length !== 12) || (input_info.charAt(3) !== "-") || (input_info.charAt(7) !== "-") ) {
+	if ( ( (input_info_length !== 12) || (input_info.charAt(3) !== "-") || (input_info.charAt(7) !== "-") )  || (input_info === bad_dash_input) ) {
 		alert("Phone number is invalid");
 	}
 
@@ -77,6 +78,7 @@ else {
 
 
 var input_info = window.prompt("Enter your state abbreviation: ", "");
+
 var input_info_uppercase = input_info.toUpperCase();
 
 if (input_info.length !== 2) {
@@ -94,9 +96,8 @@ else {
 
 
 var input_info = window.prompt("Are you married? Yes or No (capitalization doesn't matter) : ", "");
+
 var input_info_uppercase = input_info.toUpperCase();
-
-
 
 if ( input_info_uppercase === "YES" || input_info_uppercase === "NO" ) {
 	if ( input_info_uppercase === "YES" ) {
