@@ -1,5 +1,6 @@
 
 
+
 var number_check = function (in_text) {
 	for ( i = 0; i < in_text.length; i++ ) {
 		num_test = in_text[i];
@@ -38,10 +39,11 @@ else {
 var input_info = window.prompt("Enter your birth date: ", "xx/xx/xx");
 
 input_status = number_check(input_info);
+bad_slash_input = "////////";
 
 if (input_status === true) {
 
-	if ( ( input_info.length !== 8 ) || (input_info.charAt(2) !== "/" ) || ( input_info.charAt(5) !== "/" ) || ( input_info.charAt(0) === "x" ) ) {
+	if ( ( input_info.length !== 8 ) || (input_info.charAt(2) !== "/" ) || ( input_info.charAt(5) !== "/" ) || ( input_info.charAt(0) === "x" ) || (input_info === bad_slash_input) ) {
 		alert("Birth date in invalid");
 	}
 
@@ -56,10 +58,21 @@ else {
 var input_info = window.prompt("Enter your zip code in either xxxxx or xxxxx-xxxx", "xxxxx");
 
 input_status = number_check(input_info);
+bad_dash_input1 = "-----";
+bad_dash_input2 = "----------";
+bad_dash_bool1 = input_info === bad_dash_input1;
+bad_dash_bool2 = input_info === bad_dash_input2;
+
+console.log("bad_dash_bool1: " + bad_dash_bool1);
+console.log("bad_dash_bool2: " + bad_dash_bool2);
 
 if (input_status === true) { 
 
-	if ( input_info.length === 5 && input_info.charAt(0) !== "x" ) {
+	if (bad_dash_bool1 === true || bad_dash_bool2 === true) {
+		alert("Zip code is invalid");
+	}
+
+	else if ( input_info.length === 5 && input_info.charAt(0) !== "x" ) {
 		alert("Zip code is valid");
 	}
 
@@ -99,13 +112,11 @@ var input_info = window.prompt("Are you married? Yes or No (capitalization doesn
 
 var input_info_uppercase = input_info.toUpperCase();
 
-if ( input_info_uppercase === "YES" || input_info_uppercase === "NO" ) {
-	if ( input_info_uppercase === "YES" ) {
-		alert("You are married");
-	}
-	else {
-		alert("You are not married");
-	}
+if ( input_info_uppercase === "YES" ) {
+	alert("You are married");
+}
+else if (input_info_uppercase === "NO") {
+	alert("You are not married");
 }
 else {
 	alert("You did not enter either yes or no");
