@@ -1,39 +1,75 @@
 
 
+var number_check = function (in_text) {
+	for ( i = 0; i < in_text.length; i++ ) {
+		num_test = in_text[i];
+		if ( ( !isNaN(parseFloat(num_test)) === false ) && ( (num_test !== "/") && (num_test !== "-") ) ) {
+			return false;
+		}
+	}
+	return true;
+}
+
+window.number_check = number_check;
+
 
 var input_info = window.prompt("Ten digit phone number (with dashes): ", "");
 
-
 input_info_length = input_info.length;
 
-if ( (input_info_length !== 12) || (input_info.charAt(3) !== "-") || (input_info.charAt(7) !== "-") ) {
-	alert("Phone number is invalid");
-}
+input_status = number_check(input_info);
 
+if (input_status === true) {
+
+	if ( (input_info_length !== 12) || (input_info.charAt(3) !== "-") || (input_info.charAt(7) !== "-") ) {
+		alert("Phone number is invalid");
+	}
+
+	else {
+		alert("Phone number is valid");
+	}
+
+}
 else {
-	alert("Phone number is valid");
+	alert("Phone number is invalid");
 }
 
 var input_info = window.prompt("Enter your birth date: ", "xx/xx/xx");
 
-if ( ( input_info.length !== 8 ) || (input_info.charAt(2) !== "/" ) || ( input_info.charAt(5) !== "/" ) || ( input_info.charAt(0) === "x" ) ) {
-	alert("Birth date in invalid");
-}
+input_status = number_check(input_info);
 
+if (input_status === true) {
+
+	if ( ( input_info.length !== 8 ) || (input_info.charAt(2) !== "/" ) || ( input_info.charAt(5) !== "/" ) || ( input_info.charAt(0) === "x" ) ) {
+		alert("Birth date in invalid");
+	}
+
+	else {
+		alert("Birth date is valid");
+	}
+}
 else {
-	alert("Birth date is valid");
+	alert("Birth day is invalid");
 }
 
 var input_info = window.prompt("Enter your zip code in either xxxxx or xxxxx-xxxx", "xxxxx");
 
-if ( input_info.length === 5 && input_info.charAt(0) !== "x" ) {
-	alert("Zip code is valid");
-}
+input_status = number_check(input_info);
 
-else if ( input_info.length === 10 && input_info.charAt(5) === "-" ) {
-	alert("Zip code is valid");
-}
+if (input_status === true) { 
 
+	if ( input_info.length === 5 && input_info.charAt(0) !== "x" ) {
+		alert("Zip code is valid");
+	}
+
+	else if ( input_info.length === 10 && input_info.charAt(5) === "-" ) {
+		alert("Zip code is valid");
+	}
+
+	else {
+		alert("Zip code is invalid");
+	}
+}
 else {
 	alert("Zip code is invalid");
 }
@@ -75,19 +111,5 @@ else {
 }
 
 
-
-var number_check = function (in_text) {
-
-	for ( i = 0; i < in_text.length; i++ ) {
-		num_test = in_text[i];
-		if ( ( Number.isInteger(num_test) === false ) && ( (num_test !== "/") || (num_test !== "-") ) ) {
-			return "You did not enter a number";
-		}
-	}
-
-	return "Your entery was fine";
-}
-
-window.number_check = number_check;
 
 
